@@ -13,7 +13,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return inertia('Admin/Project');
+        $projects = Project::latest()->paginate(5);
+        return inertia('Admin/Project', ['projects' => $projects]);
     }
 
     /**

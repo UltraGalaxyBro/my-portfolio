@@ -13,7 +13,7 @@ class ToolController extends Controller
      */
     public function index()
     {
-        //
+        return inertia('Admin/Tool');
     }
 
     /**
