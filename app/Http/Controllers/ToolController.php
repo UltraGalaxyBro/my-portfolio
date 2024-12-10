@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tool;
-use App\Http\Requests\StoreToolRequest;
-use App\Http\Requests\UpdateToolRequest;
+use Illuminate\Http\Request;
 
 class ToolController extends Controller
 {
@@ -13,7 +12,8 @@ class ToolController extends Controller
      */
     public function index()
     {
-        return inertia('Admin/Tool');
+        $tools = Tool::latest()->paginate(10);
+        return inertia('Admin/Tool', ['tools' => $tools]);
     }
 
     /**
@@ -21,15 +21,23 @@ class ToolController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Admin/Tool/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreToolRequest $request)
+    public function store(Request $request)
     {
-        //
+        sleep(1);
+        $fields = $request->validate([
+            'name' => ['required', 'unique:tools,name'],
+        ],);
+
+        //dd($request);
+        Tool::create($fields);
+
+        return redirect('/ferramentas');
     }
 
     /**
@@ -51,7 +59,7 @@ class ToolController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateToolRequest $request, Tool $tool)
+    public function update(Request $request, Tool $tool)
     {
         //
     }

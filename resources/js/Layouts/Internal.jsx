@@ -1,6 +1,10 @@
 import { Link } from "@inertiajs/react";
 
+
+
 export default function Internal({ children }) {
+
+    const currentUser = 'Pablo';
     return (
         <>
             <div className="flex h-screen bg-gray-100">
@@ -22,7 +26,7 @@ export default function Internal({ children }) {
                             Projetos
                         </Link>
                         <Link
-                            href="#"
+                            href="/ferramentas"
                             className="block py-2 px-4 rounded hover:bg-blue-600"
                         >
                             Ferramentas
@@ -43,7 +47,7 @@ export default function Internal({ children }) {
 
                 <div className="flex-1 flex flex-col">
                     <header className="bg-white shadow p-4 flex justify-between items-center">
-                        <h2 className="text-xl font-semibold text-gray-700">Projetos</h2>
+                        <h2 className="text-xl font-semibold text-gray-700">Olá, {currentUser}</h2>
                         <div>
                             <button className="p-2 bg-gray-200 rounded-full hover:bg-gray-300">
                                 Perfil
